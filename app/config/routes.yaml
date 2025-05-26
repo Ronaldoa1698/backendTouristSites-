@@ -1,0 +1,7 @@
+auth:
+  path: /auth
+  methods: ['POST']
+user:
+  path: /user
+  methods: ['POST']
+  controller: App\Controller\0\UserController::registerUser
