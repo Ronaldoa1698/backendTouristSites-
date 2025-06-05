@@ -1,13 +1,11 @@
-version: '3.8'
-
 networks:
-  app-turistica:
-    name: app-turistica
+  app-turistica-prod:
+    name: app-turistica-prod
 
 services:
   app-prod:
     image: webdevops/php-nginx:8.2
-    container_name: app
+    container_name: app-prod
     restart: on-failure
     working_dir: /app
     ports:
@@ -18,13 +16,13 @@ services:
     environment:
       - WEB_DOCUMENT_ROOT=/app/public
     depends_on:
-      - db-turistica
+      - db-turistica-prod
     networks:
-      - app-turistica
+      - db-turistica-prod
   
   db-turistica-prod:
     image: mysql:8.0.28
-    container_name: db-turistica
+    container_name: db-turistica-prod
     command: --default-authentication-plugin=mysql_native_password
     restart: on-failure
     volumes:
@@ -36,4 +34,4 @@ services:
       #- "3320:3306" #dev
       - "3319:3306" #prod
     networks:
-      - app-turistica
+      - app-turistica-prod
