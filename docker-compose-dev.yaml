@@ -9,7 +9,7 @@ services:
     restart: on-failure
     working_dir: /app
     ports:
-      - "95:90"
+      - "94:80"
     volumes:
       - ./app:/app:rw
     environment:
@@ -30,6 +30,6 @@ services:
       MYSQL_ROOT_PASSWORD: exito
       MYSQL_DATABASE: dbturisticaprod
     ports:
-      - "3319:3308"
+      - "3320:3306"
     networks:
       - app-turistica-prod
