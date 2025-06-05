@@ -11,22 +11,24 @@ use Symfony\Bridge\Doctrine\Types\UuidType;
 use ApiPlatform\Metadata\Post;
 use App\Dto\Input\InputRegisterUserDto;
 use App\Dto\Output\OutputRegisterUserDto;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 #[ORM\Table(name: 'user')]
+#[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
-    #[ORM\Column(type: UuidType::NAME, unique: true)]
+    #[ORM\Column(type: 'string', unique: true)]
     #[ORM\GeneratedValue(strategy: 'CUSTOM')]
     #[ORM\CustomIdGenerator(class: 'doctrine.uuid_generator')]
-    private ?Uuid $id;
+    private ?string $id;
 
     #[ORM\Column(length: 180)]
     private ?string $fullName;
 
 
-    #[ORM\Column(length: 180)]
+    #[ORM\Column(length: 180, unique: true)]
     private ?string $email;
 
     /**
@@ -41,8 +43,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?string $password = null;
 
-    
-    public function getId(): ?Uuid
+    public function getId(): ?string
     {
         return $this->id;
     }

@@ -4,4 +4,4 @@ auth:
 user:
   path: /user
   methods: ['POST']
-  controller: App\Controller\0\UserController::registerUser
+  controller: App\Controller\User\UserController::registerUser

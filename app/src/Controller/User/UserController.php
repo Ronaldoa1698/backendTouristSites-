@@ -46,6 +46,12 @@ class UserController extends AbstractController
             return new JsonResponse(['error' => 'Passwords do not match'], Response::HTTP_BAD_REQUEST);
         }
 
+        $existingUser = $this->userRepository->findOneBy(['email' => $dto->email]);
+        
+        if ($existingUser) {
+            return new JsonResponse(['error' => 'Email already registered'], Response::HTTP_BAD_REQUEST);
+        }
+
         $user = new User();
         $user->setFullName($dto->fullName);
         $user->setEmail($dto->email);
@@ -53,7 +59,6 @@ class UserController extends AbstractController
         $hashedPassword = $this->passwordHasher->hashPassword($user, $dto->password);
         $user->setPassword($hashedPassword);
 
-        //create user
         $this->userRepository->add($user, true);
        
         return new JsonResponse(['message' => 'User registered successfully'], Response::HTTP_CREATED);
