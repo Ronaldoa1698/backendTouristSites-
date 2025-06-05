@@ -9,7 +9,7 @@ services:
     restart: on-failure
     working_dir: /app
     ports:
-      - "95:80"
+      - "90:80"
     volumes:
       - ./app:/app:rw
     environment:
