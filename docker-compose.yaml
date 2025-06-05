@@ -29,7 +29,7 @@ services:
       - ./database/db:/var/lib/mysql:rw
     environment:
       MYSQL_ROOT_PASSWORD: exito
-      MYSQL_DATABASE: dbturistica
+      MYSQL_DATABASE: dbturisticaprod
     ports:
       #- "3320:3306" #dev
       - "3319:3306" #prod
