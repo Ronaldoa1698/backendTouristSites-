@@ -30,6 +30,6 @@ services:
       MYSQL_ROOT_PASSWORD: exito
       MYSQL_DATABASE: dbturisticaprod
     ports:
-      - "3319:3308"
+      - "3319:3306"
     networks:
       - app-turistica-prod
