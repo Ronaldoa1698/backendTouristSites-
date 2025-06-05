@@ -18,7 +18,7 @@ services:
     depends_on:
       - db-turistica-prod
     networks:
-      - db-turistica-prod
+      - app-turistica-prod
   
   db-turistica-prod:
     image: mysql:8.0.28
